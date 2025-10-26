@@ -61,11 +61,41 @@ HealthGuardX uses modern web technologies combined with blockchain principles to
 - **ORM**: Drizzle ORM for type-safe database queries
 - **Authentication**: Web3 wallet-based (MetaMask) - no passwords to remember or lose
 
-#### Blockchain Integration
-- **Wallet Support**: MetaMask for both desktop and mobile
-- **Currency**: BDAG (BlockDAG ecosystem token)
-- **Smart Contracts**: Simulated blockchain layer ready for future on-chain deployment
-- **Verification**: Transaction hashing and signature verification
+### Blockchain & IPFS Integration
+
+- **Real Smart Contract Integration**: Connected to deployed BlockDAG smart contracts:
+  - HealthGuardXUsers: `0x7ddd2eb4ece89825096367fd6f72623996ad1a55`
+  - HealthGuardXMedical: `0x33b7b70a1a20233b441527a7cd5b43c791d78860`
+  - HealthGuardXTreatments: `0x865f4b7835cffad383d33211033ea3b747010cd8`
+  - HealthGuardXInsurance: `0xeaa1afa47136f28828464a69e21046da8706c635`
+  - HealthGuardXPayments: `0x479a9cd7bee5a12333ae3f44ad7b960aaf479278ffcb733cf3f4f80d00f465ae`
+
+- **Pinata IPFS Storage**: Replaced simulated IPFS with real Pinata cloud storage:
+  - All medical records now uploaded to IPFS with real CIDs
+  - KYC documents stored on IPFS for immutable verification
+  - Treatment logs and patient data permanently stored on decentralized storage
+  - File integrity verified with SHA-256 hashes
+  - Automatic fallback to simulated storage if IPFS is unavailable
+
+- **Blockchain Service Layer**: Created comprehensive blockchain integration infrastructure:
+  - `server/blockchain.ts`: Smart contract read-only service for querying blockchain state
+  - `server/blockchain-config.ts`: Contract addresses and network configuration  
+  - `client/src/lib/blockchain.ts`: **Frontend blockchain client for user transactions** (this is where actual contract interactions happen)
+  - Following Web3 best practices: Users sign transactions with their MetaMask wallets on the frontend
+  - Server only reads blockchain state and validates results - never stores private keys
+  - Supports user registration, KYC submission, medical records, treatments, insurance, and payments via frontend wallet signing
+
+- **IPFS Service Module**: Built complete Pinata integration:
+  - `server/ipfs.ts`: Handles file and JSON uploads to Pinata
+  - Supports both file upload (with base64 encoding) and JSON data upload
+  - Returns CID, hash, and gateway URL for each upload
+  - Metadata support for organizing uploaded content
+
+- **Updated Routes for Real Storage**: Modified all backend routes to use actual IPFS:
+  - KYC document submission uploads to IPFS
+  - Medical record uploads store files on IPFS with permanent CIDs
+  - Treatment logs uploaded as JSON to IPFS for immutable audit trail
+  - All uploads include metadata for tracking and organization
 
 ### Data Flow Architecture
 
