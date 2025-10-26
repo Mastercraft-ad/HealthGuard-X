@@ -440,7 +440,7 @@ HealthGuardX supports six distinct user roles, each with specific capabilities d
    - Update system policies
 
 **Dashboard View**: Shows pending KYC count, pending role applications, total users, verified users, and system activity.
-
+![App Screenshot](Admin_HealthGuard.png)
 **Real-Time Updates**: Admin dashboard auto-refreshes every 3 seconds to show latest KYC and role applications.
 
 ---
