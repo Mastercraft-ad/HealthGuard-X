@@ -989,87 +989,6 @@ HealthGuardX supports six distinct user roles, each with specific capabilities d
 
 ---
 
-## Technical Implementation
-
-### Database Schema
-
-**Core Tables**:
-
-1. **users**: Wallet addresses, roles, status, basic profile
-2. **kyc**: Identity verification documents and status
-3. **healthProfiles**: Blood type, allergies, conditions, medications
-4. **medicalRecords**: Encrypted files with IPFS CIDs and hashes
-5. **accessControl**: Permission grants with expiration
-6. **treatmentLogs**: Doctor-signed treatment records
-7. **insuranceProviders**: Insurance company profiles
-8. **patientInsuranceConnections**: Patient-provider relationships
-9. **claims**: Insurance claim submissions and status
-10. **auditLogs**: Immutable action history
-11. **emergencyQRCodes**: QR data and scan counts
-12. **consultationRequests**: Doctor-patient consultations
-13. **chatMessages**: Real-time consultation messages
-14. **patientAdmissions**: Hospital admission records
-15. **subscriptionPayments**: Institutional subscription tracking
-
-### API Endpoints
-
-**Authentication**:
-- POST `/api/auth/register` - Register new user
-- POST `/api/auth/login` - Authenticate with wallet signature
-- GET `/api/user/me` - Get current user info
-
-**Patient Endpoints**:
-- GET `/api/patient/profile` - Get health profile
-- PUT `/api/patient/profile` - Update health profile
-- GET `/api/patient/records` - Get medical records
-- POST `/api/patient/records` - Upload new record
-- GET `/api/patient/access-requests` - Get access requests
-- POST `/api/patient/access/respond` - Grant/deny access
-- POST `/api/patient/qr` - Generate emergency QR
-
-**Doctor Endpoints**:
-- GET `/api/doctor/patients` - Get assigned patients
-- POST `/api/doctor/access-request` - Request patient access
-- GET `/api/doctor/treatments` - Get treatment logs
-- POST `/api/doctor/treatment` - Create treatment log
-
-**Hospital Endpoints**:
-- GET `/api/hospital/patients` - Get hospital patients
-- POST `/api/hospital/admit` - Admit patient
-- POST `/api/hospital/discharge` - Discharge patient
-- GET `/api/hospital/claims` - Get insurance claims
-- POST `/api/hospital/claim` - Submit new claim
-
-**Insurance Endpoints**:
-- GET `/api/insurance/connections` - Get patient connections
-- POST `/api/insurance/connection/respond` - Approve/reject connection
-- GET `/api/insurance/claims` - Get all claims
-- POST `/api/insurance/claim/review` - Approve/reject claim
-- POST `/api/insurance/claim/pay` - Pay approved claim
-
-**Admin Endpoints**:
-- GET `/api/admin/kyc-queue` - Get pending KYC submissions
-- POST `/api/admin/kyc/verify` - Approve/reject KYC
-- GET `/api/admin/role-applications` - Get role applications
-- POST `/api/admin/role/approve` - Approve role change
-- GET `/api/admin/users` - Get all users
-- GET `/api/admin/audit-logs` - Get system audit logs
-
-### Real-Time Features
-
-**Auto-Refresh Intervals**:
-- Patient dashboard: 1 second (instant updates)
-- Doctor dashboard: 3 seconds
-- Hospital dashboard: 5 seconds
-- Insurance dashboard: 5 seconds
-- Admin dashboard: 3 seconds (critical for KYC queue)
-- Consultation chat: WebSocket real-time
-
-**Benefits**:
-- No manual page refresh needed
-- Immediate visibility of new requests/claims
-- Real-time collaboration
-- Enhanced user experience
 
 ### Blockchain Simulation
 
@@ -1184,7 +1103,7 @@ HealthGuardX supports six distinct user roles, each with specific capabilities d
    - Institution name
    - Registration documents
    - Location and address
-3. Pay 2 BDAG annual subscription
+3. Pay 2 BDAG annual subscription for testing but it can be added
 4. Wait for admin verification
 
 **Step 2: Admit Patients**
@@ -1210,7 +1129,7 @@ HealthGuardX supports six distinct user roles, each with specific capabilities d
    - Company name
    - Registration documents
    - Coverage details
-3. Pay 2 BDAG annual subscription
+3. Pay 2 BDAG annual subscription for testing but it can be added
 4. Wait for admin approval
 
 **Step 2: Create Policies**
@@ -1289,45 +1208,32 @@ HealthGuardX supports six distinct user roles, each with specific capabilities d
 
 ### Planned Features
 
-1. **Full On-Chain Deployment**
-   - Deploy smart contracts to BlockDAG network
-   - On-chain claim verification
-   - Decentralized storage (actual IPFS)
-
-2. **AI-Powered Insights**
+1. **AI-Powered Insights**
    - Health trend analysis
    - Medication interaction warnings
    - Predictive health alerts
 
-3. **Telemedicine Integration**
+2. **Telemedicine Integration**
    - Video consultations
    - Remote diagnosis
    - E-prescriptions
 
-4. **Wearable Device Integration**
+3. **Wearable Device Integration**
    - Import data from fitness trackers
    - Real-time health monitoring
    - Automated health profile updates
 
-5. **Multi-Language Support**
+4. **Multi-Language Support**
    - Support for African languages
    - Swahili, Amharic, French, Portuguese
    - Accessibility improvements
 
-6. **Offline Mode**
+5. **Offline Mode**
    - Progressive Web App (PWA)
    - Offline record viewing
    - Sync when online
 
 ---
-
-## Support and Resources
-
-### Getting Help
-
-- **Documentation**: This guide and `replit.md`
-- **Smart Contract Docs**: See `/contracts` directory
-- **API Reference**: See server route definitions
 
 ### System Requirements
 
